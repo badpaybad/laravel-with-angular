@@ -1,0 +1,11 @@
+{
+    "/angularsample": {
+        "target": "http://localhost:4200",
+        "secure": false,
+        "pathRewrite": {
+            "^/angularsample": ""
+        },
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
