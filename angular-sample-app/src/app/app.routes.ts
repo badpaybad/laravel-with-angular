@@ -3,4 +3,5 @@ import { TestquerystringComponent } from './testquerystring/testquerystring.comp
 
 export const routes: Routes = [
     { path: 'testquerystring', component: TestquerystringComponent },
+    { path: 'testmodule', loadChildren: () => import('./testmodule/testmodule.module').then(m => m.TestmoduleModule) },
 ];
