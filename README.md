@@ -2,6 +2,9 @@
 
 after build angular we copy to public/angularsample. some config bellow will do this automaticlly
 
+
+![4](./4.png)
+
 ![1](./1.png)
 
 
