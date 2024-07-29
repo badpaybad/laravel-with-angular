@@ -189,6 +189,7 @@
 
 <a href="/angularsample/testmodule/other?name=dunp#abc=type">testmodule/other?name=dunp#abc=type</a>  
 
+
 <main class="main">
 
   <div class="content">
@@ -242,6 +243,19 @@
       <p>Congratulations! Your app is running. 🎉</p>
 
       <div [innerHTML]="htmlContent"></div>
+      <fieldset>
+        <legend>Angular menu</legend>
+      
+        <nav>
+          <ul>
+            <li *ngFor="let item of menuItems">
+              <a [routerLink]="item.path" [queryParams]="{ name: 'dunp', page: 1 }" fragment="abc=type">{{ item.name }}</a>
+            </li>
+          </ul>
+        </nav>  
+        
+      
+      </fieldset>
 
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
