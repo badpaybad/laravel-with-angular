@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/testmenu', function () {
+    return view('testmenu');
+});
+
+Route::get('/dunp', function () {
+    return view('dunp');
+});
 // Other routes for APIs and admin...
 Route::prefix('api')->group(function () {
     // Your API routes go here...

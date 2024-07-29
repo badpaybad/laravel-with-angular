@@ -177,6 +177,7 @@
   }
 </style>
 
+<a href="/dunp">dunp</a> <br>
 <a href="/angularsample">home</a> <br>
 
 <a href="/angularsample?name=dunp">home?name=dunp</a> <br>
@@ -239,6 +240,9 @@
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+
+      <div [innerHTML]="htmlContent"></div>
+
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
