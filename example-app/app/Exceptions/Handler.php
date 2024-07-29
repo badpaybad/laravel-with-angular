@@ -6,6 +6,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use Illuminate\Support\Str;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -42,10 +44,17 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-        // If a 404 exception is encountered, serve the Angular index.html
         if ($exception instanceof NotFoundHttpException) {
-            return response()->file(public_path('angularsample/index.html'));
+            $path = urlencode($request->fullUrl());
+            $needle = urlencode("/angularsample/");
+            if (stripos($path, $needle) > 0) {
+                //If a 404 exception is encountered, serve the Angular index.html
+
+                return response()->file(public_path('angularsample/index.html'));
+            }
         }
+
+        //Handle other routes
 
         return parent::render($request, $exception);
     }

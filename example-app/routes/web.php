@@ -42,6 +42,6 @@ Route::get('angularsample/{any}', function () {
 })->where('any', '.*');
 
 // Fallback route to serve Angular's index.html
-Route::get('angularsample{any}', function () {
+Route::get('/angularsample', function () {
     return file_get_contents(public_path('angularsample/index.html'));
-})->where('any', '.*');
+});

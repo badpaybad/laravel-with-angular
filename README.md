@@ -7,12 +7,20 @@ php artisan serve
 add function
 
 `
+   
     public function render($request, Throwable $exception)
     {
-        // If a 404 exception is encountered, serve the Angular index.html
         if ($exception instanceof NotFoundHttpException) {
-            return response()->file(public_path('angularsample/index.html'));
+            $path = urlencode($request->fullUrl());
+            $needle = urlencode("/angularsample/");
+            if (stripos($path, $needle) > 0) {
+                //If a 404 exception is encountered, serve the Angular index.html
+
+                return response()->file(public_path('angularsample/index.html'));
+            }
         }
+
+        //Handle other routes
 
         return parent::render($request, $exception);
     }
@@ -21,7 +29,6 @@ add function
 ## route url example-app/routes/web.php
 
 `
-
 
 // Serve Angular static files directly (CSS, JS, images, etc.)
 Route::get('angularsample/{any}', function ($any) {
@@ -38,9 +45,10 @@ Route::get('angularsample/{any}', function () {
 })->where('any', '.*');
 
 // Fallback route to serve Angular's index.html
-Route::get('angularsample{any}', function () {
+Route::get('/angularsample', function () {
     return file_get_contents(public_path('angularsample/index.html'));
-})->where('any', '.*');
+});
+
 
 `
 
