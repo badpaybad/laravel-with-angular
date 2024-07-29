@@ -27,21 +27,21 @@ Route::prefix('admin')->group(function () {
 });
 
 
-// Serve Angular static files correctly
+// Serve Angular static files directly (CSS, JS, images, etc.)
+Route::get('angularsample/{any}', function ($any) {
+    $filePath = public_path('angularsample/' . $any);
+    if (file_exists($filePath)) {
+        return response()->file($filePath);
+    }
+    return file_get_contents(public_path('angularsample/index.html'));
+})->where('any', '.*');
+
+// Fallback route to serve Angular's index.html
 Route::get('angularsample/{any}', function () {
     return file_get_contents(public_path('angularsample/index.html'));
 })->where('any', '.*');
 
-Route::get('angularsample', function () {
+// Fallback route to serve Angular's index.html
+Route::get('angularsample{any}', function () {
     return file_get_contents(public_path('angularsample/index.html'));
-});
-
-
-// Serve static files directly
-Route::get('angularsample/{path}', function ($path) {
-    $filePath = public_path('angularsample/' . $path);
-    if (file_exists($filePath)) {
-        return response()->file($filePath);
-    }
-    abort(404);
-})->where('path', '.*');
+})->where('any', '.*');

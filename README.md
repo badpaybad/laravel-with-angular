@@ -2,6 +2,48 @@
 
 php artisan serve
 
+## handle 404 example-app/app/Exceptions/Handler.php
+
+add function
+
+`
+    public function render($request, Throwable $exception)
+    {
+        // If a 404 exception is encountered, serve the Angular index.html
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->file(public_path('angularsample/index.html'));
+        }
+
+        return parent::render($request, $exception);
+    }
+`
+
+## route url example-app/routes/web.php
+
+`
+
+
+// Serve Angular static files directly (CSS, JS, images, etc.)
+Route::get('angularsample/{any}', function ($any) {
+    $filePath = public_path('angularsample/' . $any);
+    if (file_exists($filePath)) {
+        return response()->file($filePath);
+    }
+    return file_get_contents(public_path('angularsample/index.html'));
+})->where('any', '.*');
+
+// Fallback route to serve Angular's index.html
+Route::get('angularsample/{any}', function () {
+    return file_get_contents(public_path('angularsample/index.html'));
+})->where('any', '.*');
+
+// Fallback route to serve Angular's index.html
+Route::get('angularsample{any}', function () {
+    return file_get_contents(public_path('angularsample/index.html'));
+})->where('any', '.*');
+
+`
+
 # angular
 
 ng serve
@@ -80,3 +122,4 @@ First, create a proxy.conf.json file in your Angular project root:
 }
 
 `
+
