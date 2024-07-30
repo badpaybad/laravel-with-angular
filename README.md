@@ -77,7 +77,7 @@ ng serve
 assum satic file angular built copy to laravel folder public/angularsample
 
 
-              ng build --base-href=/angularsample/
+              ng build --base-href=/angularsample/ --output-path="../example-app/public/angularsample"  --browser='' 
 
 or change angular.json
 
@@ -116,7 +116,7 @@ ng build have change in index.html or src/index.html angular
 # ng serve
             
 
-              ng serve --base-href=/angularsample/
+              ng serve --base-href=/angularsample/ --output-path="../example-app/public/angularsample"
 
 or First, create a proxy.conf.json file in your Angular project root:
 
