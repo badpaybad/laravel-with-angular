@@ -83,8 +83,8 @@ angular.json
                     {
                         //"outputPath": "dist/angular-sample-app",
                         "outputPath":{"base":"../example-app/public/angularsample",
-                        "browser": ""  ,
-                        "baseHref": "/angularsample/"
+                        "browser": ""  
+                        //,"baseHref": "/angularsample/"
                     },
 
 
