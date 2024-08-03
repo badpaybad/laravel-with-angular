@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'angular-sample-app';
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer,private route: ActivatedRoute) { }
 
   htmlContent: string = '';
   menuItems = [
@@ -23,6 +23,11 @@ export class AppComponent {
     { name: 'testquerystring', path: 'testquerystring' },
     { name: 'testmodule/other', path: 'testmodule' }
   ];
+
+
+  name: string | null = '';
+  fragment: string | null = '';
+
 
   ngOnInit(): void {
     const url = 'http://127.0.0.1:8000/testmenu'; // Replace with your URL
@@ -34,7 +39,14 @@ export class AppComponent {
       (error) => {
         console.error('Error fetching HTML', error);
       }
-    );;
+    );
+
+    this.route.queryParamMap.subscribe(params => {
+      this.name = params.get('name');
+    });
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+    });
 
   }
 

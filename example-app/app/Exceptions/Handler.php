@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof NotFoundHttpException) {
             $path = urlencode($request->fullUrl());
-            $needle = urlencode("/angularsample/");
+            $needle = urlencode("/angularsample");
             if (stripos($path, $needle) > 0) {
                 //If a 404 exception is encountered, serve the Angular index.html
 
