@@ -431,7 +431,7 @@
             </div>
 
             <div>
-                <a href="/angularsample?name=dunp">angularsample click bellow link to test: menu blade include('testmenu')</a>
+                <a href="/angularsample?name=dunp">angularsample click bellow link to test: partialview by menu blade include('testmenu')</a>
             </div>
             @include("testmenu")
 
